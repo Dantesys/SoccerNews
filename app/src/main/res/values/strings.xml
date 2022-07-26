@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Soccer News</string>
+    <string name="title_news">News</string>
+    <string name="title_favorite">Favorites</string>
+    <string name="card_new_reader">Read more...</string>
+    <string name="card_new_img">News Image</string>
+    <string name="card_new_icon">Favorite</string>
+    <string name="share">Share</string>
+</resources>
