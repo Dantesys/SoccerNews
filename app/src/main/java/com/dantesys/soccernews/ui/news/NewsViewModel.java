@@ -1,35 +1,48 @@
 package com.dantesys.soccernews.ui.news;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.dantesys.soccernews.data.remote.soccernewsapi;
 import com.dantesys.soccernews.domain.News;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
-import java.util.ListIterator;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NewsViewModel extends ViewModel {
 
     private final MutableLiveData<List<News>> news;
+    private final soccernewsapi api;
 
     public NewsViewModel() {
         this.news = new MutableLiveData<>();
-        //TODO remover esse temp_news para puxar da api
-        List<News> temp_news = new ArrayList<News>();
-        temp_news.add(new News("Teste","Testagem",""));
-        temp_news.add(new News("Teste 2","Testagem alfa",""));
-        temp_news.add(new News("Teste 3","Testagem beta",""));
-        temp_news.add(new News("Teste 4","Testagem gama",""));
-        temp_news.add(new News("Teste 5","Testagem omega",""));
-        this.news.setValue(temp_news);
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("https://dantesys.github.io/SoccerNewsAPI/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        api = retrofit.create(soccernewsapi.class);
+        this.findNews();
     }
+    public void findNews(){
+        api.getNews().enqueue(new Callback<List<News>>() {
+            @Override
+            public void onResponse(Call<List<News>> call, Response<List<News>> response) {
+                if(response.isSuccessful()){
+                    news.setValue(response.body());
+                }//TODO melhorar tratamento de erro
+            }
 
+            @Override
+            public void onFailure(Call<List<News>> call, Throwable t) {
+                //TODO melhorar tratamento de erro
+            }
+        });
+    }
     public LiveData<List<News>> getNews() {
         return this.news;
     }

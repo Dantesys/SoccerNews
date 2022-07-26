@@ -31,6 +31,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
+            android:ellipsize="end"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -66,37 +67,45 @@
 
         <ImageButton
             android:id="@+id/favorite"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:background="@color/transparente"
+            android:adjustViewBounds="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:backgroundTint="@color/transparente"
+            android:clickable="true"
             android:contentDescription="@string/title_favorite"
+            android:focusable="true"
             android:minWidth="48dp"
             android:minHeight="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/share"
             app:layout_constraintTop_toTopOf="@+id/cn_readmore"
-            app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/ic_baseline_favorite_24_black"
-            tools:ignore="ImageContrastCheck" />
+            tools:ignore="ImageContrastCheck,TouchTargetSizeCheck" />
 
         <ImageButton
             android:id="@+id/share"
+            style="?android:attr/borderlessButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
-            android:background="@color/transparente"
+            android:adjustViewBounds="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:backgroundTint="@color/transparente"
+            android:clickable="true"
             android:contentDescription="@string/share"
+            android:focusable="true"
             android:minWidth="48dp"
             android:minHeight="48dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/cn_readmore"
-            app:srcCompat="@drawable/ic_baseline_share_24" />
+            app:srcCompat="@drawable/ic_baseline_share_24"
+            tools:ignore="TouchTargetSizeCheck" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
