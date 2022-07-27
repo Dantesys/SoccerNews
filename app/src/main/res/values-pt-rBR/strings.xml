@@ -3,8 +3,10 @@
     <string name="app_name">Noticias Esportivas</string>
     <string name="title_news">Noticias</string>
     <string name="title_favorite">Favoritos</string>
-    <string name="card_new_reader">Ler mais ...</string>
+    <string name="card_new_reader">Ler mais …</string>
     <string name="card_new_img">Imagem da noticia</string>
     <string name="card_new_icon">Favorito</string>
     <string name="share">Compartilhar</string>
+    <string name="es">Futebol feminino</string>
+    <string name="sharing">SCompartilhar usando</string>
 </resources>
