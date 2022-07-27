@@ -25,21 +25,21 @@ public class NewsFragment extends Fragment {
         binding = FragmentNewsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         binding.rvNews.setLayoutManager(new LinearLayoutManager(getContext()));
-        newsViewModel.getNews().observe(getViewLifecycleOwner(), news -> {
-            binding.rvNews.setAdapter(new NewsAdapter(news, updatedNews -> {
-                MainActivity mainActivity = (MainActivity) getActivity();
-                if (mainActivity != null) {
-                    mainActivity.getDb().newsDao().save(updatedNews);
-                }
-            }));
-        });
+        newsViewModel.getNews().observe(getViewLifecycleOwner(), news -> binding.rvNews.setAdapter(new NewsAdapter(news, updatedNews -> {
+            MainActivity mainActivity = (MainActivity) getActivity();
+            if (mainActivity != null) {
+                mainActivity.getDb().newsDao().save(updatedNews);
+            }
+        })));
         newsViewModel.getState().observe(getViewLifecycleOwner(), state -> {
             switch (state){
                 case DONE:
+                case ERROR:
+                    binding.getRoot().setRefreshing(false);
                     break;
                 case NOING:
+                    binding.getRoot().setRefreshing(true);
                     break;
-                case ERROR:
             }
         });
         return root;
